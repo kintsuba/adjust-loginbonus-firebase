@@ -19,11 +19,13 @@ const main = async () => {
   const usersQuerySnap = await usersQuery.get();
 
   usersQuerySnap.forEach(async (doc) => {
-    await doc.ref.update({
-      isLastLogin: doc.data()?.isLogin,
-      isLogin: false,
-    });
+    // await doc.ref.update({
+    //   isLastLogin: doc.data()?.isLogin,
+    //   isLogin: false,
+    // });
   });
+
+  console.log("no problem.");
 };
 
 main();
