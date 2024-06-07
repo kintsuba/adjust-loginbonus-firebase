@@ -2,22 +2,27 @@
   "name": "cordreel-ai-bot",
   "version": "0.1.0",
   "main": "src/app.ts",
+  "type": "module",
   "repository": "https://github.com/kintsuba/cordreel-ai-bot.git",
   "license": "MIT",
   "packageManager": "pnpm@9.0.4",
   "scripts": {
-    "dev": "ts-node src/app.ts",
+    "dev": "tsx src/app.ts",
     "start": "node build/app.js",
     "build": "tsc -p ."
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "firebase": "^10.11.0",
     "firebase-admin": "^12.1.0",
+    "misskey-js": "^2024.5.0",
+    "moment": "^2.30.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2"
   },
   "devDependencies": {
     "@types/node": "^20.11.29",
-    "prettier": "^3.2.4"
+    "prettier": "^3.2.4",
+    "tsx": "^4.13.2"
   }
 }

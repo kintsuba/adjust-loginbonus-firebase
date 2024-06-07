@@ -1,5 +1,14 @@
 import { Filter, Firestore } from "firebase-admin/firestore";
 import { applicationDefault, initializeApp } from "firebase-admin/app";
+import { api } from "misskey-js";
+import moment from "moment";
+import "moment/locale/ja";
+import "dotenv/config";
+
+if (!process.env.MISSKEY_TOKEN) {
+  console.error("Make .env file.");
+  process.exit(-1);
+}
 
 const main = async () => {
   initializeApp({
@@ -7,6 +16,12 @@ const main = async () => {
   });
 
   const db = new Firestore();
+
+  const host = "https://misskey.m544.net";
+  const cli = new api.APIClient({
+    origin: host,
+    credential: process.env.MISSKEY_TOKEN,
+  });
 
   const usersQuery = db
     .collectionGroup("users")
@@ -24,6 +39,17 @@ const main = async () => {
       isLogin: false,
     });
   });
+
+  const result = await cli
+    .request("notes/create", {
+      text: `5時になったので、**${moment()
+        .add(9, "h")
+        .format("M月D日")}**のログインボーナスが受け取れるようになりました。`,
+      visibility: "home",
+    })
+    .catch((error) => console.error("", error));
+
+  console.debug(result);
 };
 
 main();
