@@ -2,7 +2,7 @@ import { Filter, Firestore } from "firebase-admin/firestore";
 import { applicationDefault, initializeApp } from "firebase-admin/app";
 import { api } from "misskey-js";
 import moment from "moment";
-import "moment/locale/ja";
+import "moment/locale/ja.js";
 import "dotenv/config";
 
 if (!process.env.MISSKEY_TOKEN) {
